@@ -6,7 +6,7 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <a href="#" class="btn btn-primary">Add New Record</a>
+        <a href="{% url 'employee:create' %}" class="btn btn-primary">Add New Record</a>
         <hr>
 
         <table class="table table-striped">

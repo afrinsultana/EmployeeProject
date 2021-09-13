@@ -1,0 +1,26 @@
+cryspy forms
+Function based views
+Class based views
+Fav Icon
+Google Map*
+Embedding Youtube Video*
+Slide Show
+Bootsrap 
+
+
+Djaneiro - Django Snippets
+-EditorConfig for VS Code
+ESLint
+HTML Snippets
+IntelliSense for CSS class names in HTML
+Jupyter
+Live Server
+PowerShell
+HTML Snippets
+Python Path
+Python Extension Pack
+IntelliSense for CSS class names in HTML
+
+Bracket Pair Colorizer
+Prettier - Code formatter
+Auto Rename Tag
