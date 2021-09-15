@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls.base import reverse_lazy
 from .models import *
 from .forms import *
 from django.views.generic import *
@@ -14,7 +15,7 @@ class HomeView(TemplateView):
 class EmployeeListView(ListView):
     model = Employee
     template_name = "emp/list.html"
-    paginate_by=2
+    # paginate_by=2
 
 
 class EmployeeCreateView(CreateView):
@@ -29,6 +30,19 @@ class EmployeeCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context["title"] ='Create' 
         context["heading"] ='Create New Employee' 
+        return context
+    
+
+class EmployeeUpdateView(UpdateView):
+    model = Employee
+    template_name = "emp/empForm.html"
+    form_class=EmployeeForm
+    success_url=reverse_lazy('employee:list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Edit'
+        context["heading"]='Update Employee'
         return context
     
 
