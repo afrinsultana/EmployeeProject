@@ -65,11 +65,30 @@
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                           </li>
                         </ul>
-                        
-                        <form class="d-flex">
+                        <ul class="navbar-nav ml-auto">
+                          
+                          {% if request.user.is_authenticated %}
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">Hi! {{ request.user.username }} </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="nav-link">Log Out </a>
+                          </li>
+                            {% else %}
+                            <li class="nav-item">
+                              <a href="{% url 'login' %}" class="nav-link">Login </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="#" class="nav-link">Register </a>
+                            </li>
+                          {% endif %}
+                            
+
+                        </ul>
+                        <!-- <form class="d-flex">
                           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                           <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        </form> -->
                       </div>
                     </div>
                   </nav>

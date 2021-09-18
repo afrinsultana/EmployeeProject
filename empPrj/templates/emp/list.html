@@ -4,97 +4,113 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <a href="{% url 'employee:create' %}" class="btn btn-primary">Add New Record</a>
-        <hr>
-
-        <table class="table table-striped" id="emptable" data-page-length="2">
-            <thead>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Employee Name</th>
-                    <th>Email Address</th>
-                    <th>Date Of Birth html</th>
-                    <th>Salary</th>
-                    <th>Photo</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+<div class="row">
+    <div class="col-sm-3">
+        <ul>
+            <li class="list-unstyled"><a href="{% url 'employee:list' %}">All</a></li>
+            
+            {% for dept in departments %}
+                <li class="list-unstyled"><a href="{{ dept.get_absolute_url }}">{{ dept.name }}</a></li>
+            {% endfor %}
                 
-                {% for emp in object_list %}
+
+        </ul>
+    </div>
+    <div class="col-sm-9">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <a href="{% url 'employee:create' %}" class="btn btn-primary">Add New Record</a>
+            <hr>
+    
+            <table class="table table-striped" id="emptable" data-page-length="2">
+                <thead>
                     <tr>
-                        <td>{{ emp.id }}</td>
-                        <td>{{ emp.name }}</td>
-                        <td>{{ emp.email }}</td>
-                        <td>{{ emp.dob|date:'Y-m-d' }}</td>
-                        <td>{{ emp.salary }}</td>
-                        <td><img src="{{ emp.photo.url }}" alt="" width="100px"></td>                           
-                            
-                        <td>
-                            
-                            <a href="{% url 'employee:update' emp.id %}" class="btn btn-warning"><i class="fas fa-edit fa-lg" ></i> Edit </a>
-                            <a onclick="return confirm('Are you sure you want to delete Id no : {{stud.id}} {{stud.name}}  record?');" href="#" class="btn btn-danger"><i class="fas fa-trash fa-lg" ></i>  </a>
-             
-                        </td>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Email Address</th>
+                        <th>Date Of Birth html</th>
+                        <th>Salary</th>
+                        <th>Photo</th>
+                        <th>Actions</th>
                     </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="7" class="text-center bg-warning">No Record Found</td>
-                    </tr>
-
-                {% endfor %}
+                </thead>
+                <tbody>
                     
-
-            </tbody>
-            <tfoot>
-
-            </tfoot>
-        </table>
-        <nav aria-label="Page navigation">
-            <ul class="pagination pagination-circle ">
-                
-                {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">&laquo;</a>
-                    </li>    
-                {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
-                    </li>
-                {% endif %}
-                    
-                    {% for i in page_obj.paginator.page_range %}
-                        
-                        {% if page_obj.number == i %}
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">{{ i }}</a>
-                            </li>
-                        {% else %}
-                            <li class="page-item" aria-current="page">
-                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                            </li>
-                        {% endif %}
-                            
+                    {% for emp in object_list %}
+                        <tr>
+                            <td>{{ emp.id }}</td>
+                            <td>{{ emp.name }}</td>
+                            <td>{{ emp.email }}</td>
+                            <td>{{ emp.dob|date:'Y-m-d' }}</td>
+                            <td>{{ emp.salary }}</td>
+                            <td><img src="{{ emp.photo.url }}" alt="" width="100px"></td>                           
+                                
+                            <td>
+                                
+                                <a href="{% url 'employee:update' emp.id %}" class="btn btn-warning"><i class="fas fa-edit fa-lg" ></i> Edit </a>
+                                <a onclick="return confirm('Are you sure you want to delete Id no : {{stud.id}} {{stud.name}}  record?');" href="#" class="btn btn-danger"><i class="fas fa-trash fa-lg" ></i>  </a>
+                 
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center bg-warning">No Record Found</td>
+                        </tr>
+    
                     {% endfor %}
-
-                {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1" aria-disabled="true">&raquo;</a>
-                    </li>    
-                {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&raquo;</a>
-                    </li>
-                {% endif %}    
+                        
+    
+                </tbody>
+                <tfoot>
+    
+                </tfoot>
+            </table>
+            <!-- <nav aria-label="Page navigation">
+                <ul class="pagination pagination-circle ">
                     
-                    
-              
-              
-            </ul>
-          </nav>
-    </form>
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">&laquo;</a>
+                        </li>    
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                        </li>
+                    {% endif %}
+                        
+                        {% for i in page_obj.paginator.page_range %}
+                            
+                            {% if page_obj.number == i %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#">{{ i }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item" aria-current="page">
+                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                </li>
+                            {% endif %}
+                                
+                        {% endfor %}
+    
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1" aria-disabled="true">&raquo;</a>
+                        </li>    
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&raquo;</a>
+                        </li>
+                    {% endif %}    
+                        
+                        
+                  
+                  
+                </ul>
+              </nav> -->
+        </form>    
+    </div>
+</div>
+    
 {% endblock content %}
     
     

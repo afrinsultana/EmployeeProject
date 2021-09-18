@@ -9,8 +9,8 @@ $(function()
         autoclose:true,
         orientation:"auto",
         todayHighlight:true,
-        //  endDate:"-0d"
-        // startDate:"-0d"
+        //  endDate:"-0d"  // date will not be shown after Today
+        // startDate:"-0d" // Date will not be shown before today
 
     }
     );

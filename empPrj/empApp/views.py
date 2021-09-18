@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls.base import reverse_lazy
 from .models import *
 from .forms import *
@@ -12,10 +12,10 @@ class HomeView(TemplateView):
     template_name = "home.html" 
 
 
-class EmployeeListView(ListView):
-    model = Employee
-    template_name = "emp/list.html"
-    # paginate_by=2
+# class EmployeeListView(ListView):
+#     model = Employee
+#     template_name = "emp/list.html"
+#     # paginate_by=2
 
 
 class EmployeeCreateView(CreateView):
@@ -46,4 +46,15 @@ class EmployeeUpdateView(UpdateView):
         return context
     
 
+def employee_list(request,department_slug=None):
+    department=None
+    departments=Department.objects.all()
+    employees=Employee.objects.all()
+    if department_slug:
+        department=get_object_or_404(Department,slug=department_slug)
+        employees=Employee.objects.filter(department=department)
+        
+    context={'department':department,'departments':departments,'object_list':employees}
+    return render(request,'emp/list.html',context)
+        
 
