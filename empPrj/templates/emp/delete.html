@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock title %}
+    
+{% block content %}
+
+
+<form  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <!-- <div class="modal" tabindex="-1" role="dialog" id="myModal" > -->
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete Employee</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure You Want to Delete?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Confirm Delete</button>
+              <a href="{% url 'employee:list' %}" class="btn btn-warning">Back to list</a>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+   
+        
+{% endblock  %}
+        

@@ -14,6 +14,14 @@ $(function()
 
     }
     );
+    //show dialog
+     $("#myModal").modal();
+
+        setTimeout(() => {
+           $('.alert').hide('slow'); 
+        }, 5000);
+   
+
 
     // show Image
     $('#id_photo').change(function(){

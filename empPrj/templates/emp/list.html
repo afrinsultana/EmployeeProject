@@ -48,7 +48,7 @@
                             <td>
                                 
                                 <a href="{% url 'employee:update' emp.id %}" class="btn btn-warning"><i class="fas fa-edit fa-lg" ></i> Edit </a>
-                                <a onclick="return confirm('Are you sure you want to delete Id no : {{stud.id}} {{stud.name}}  record?');" href="#" class="btn btn-danger"><i class="fas fa-trash fa-lg" ></i>  </a>
+                                <a  href="{% url 'employee:delete' emp.id %}"  class="btn btn-danger"><i class="fas fa-trash fa-lg" ></i>  </a>
                  
                             </td>
                         </tr>
