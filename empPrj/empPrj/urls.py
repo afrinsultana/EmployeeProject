@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.HomeView.as_view(),name='home'),
     path('emp/',include(('empApp.urls','app_name'),namespace='employee')),
+    path('util/',include(('utilApp.urls','app_name'),namespace='util')),
     path('',include('django.contrib.auth.urls')),
 
 ]
