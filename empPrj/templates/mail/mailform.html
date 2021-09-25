@@ -1,12 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock title %}
     
-</body>
-</html>
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white" >
+                    <p class="p-2"> {{ heading }} </p>                  
+                </div>
+                <div class="card-body">
+                    {% load crispy_forms_tags %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Send Mail</button>
+                    <a href="{% url 'employee:list' %}" class="btn btn-warning"> Back </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <p class="p-2"> ... </p>                  
+                </div>
+                <div class="card-body">
+                    <img src="{{ object.photo.url }}" alt="" width="300px" class="blah" >
+                </div>
+            </div>
+        </div>
+   </div>
+</form>
+{% endblock content %}
+

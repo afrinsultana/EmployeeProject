@@ -55,7 +55,7 @@
                               Dropdown
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:sendmail' %}">Sending Mail...</a></li>
                               <li><a class="dropdown-item" href="#">Another action</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -100,10 +100,27 @@
            
             
             {% for message in messages %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+               Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your work has been saved',
+                text: '{{message}}',
+                showConfirmButton: true
+                //timer: 3000
+              })  
+
+              
+              /* Swal.fire({
+                icon: 'success',
+                title: 'Your work has been saved ',
+                text: '{{message}}',
+                confirmButtonText:'Ok'
+              }) */
+            </script>
+
+            
               
             {% endfor %}
               
