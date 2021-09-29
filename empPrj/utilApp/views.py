@@ -4,6 +4,9 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.http import HttpResponse
+import csv
+from empApp.models import Employee
 
 # Create your views here.
 def SendEmailwithAttachment(request):
@@ -34,4 +37,15 @@ def SendEmailwithAttachment(request):
 
     context={'form':form}
     return render(request,'mail/mailform.html',context)
+
+def export_employee_csv(request):
+    response=HttpResponse(content_type='text/csv')
+    response['Content-Disposition']='attachment;filename="employee.csv"'
+    writer=csv.writer(response)
+    writer.writerow(['Id','Employee Name','Birth Date','Email-Address'])
+    employees=Employee.objects.all().values_list('id','name','dob','email')
+    for emp in employees:
+        writer.writerow(emp)
+    return response
+    
 

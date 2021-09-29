@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'empApp',
     'crispy_forms',
+    'import_export',# pip install django-import-export
 ]
 #pip install django-crispy-forms
 CRISPY_TEMPLATE_PACK='bootstrap4'
