@@ -12,11 +12,21 @@ class EmployeeResource(resources.ModelResource):
         exclude=('photo','created_at','updated_at',)
 
 class EmployeeAdmin(ImportExportMixin,admin.ModelAdmin):
-    list_filter=['department']
-    list_display=('name','email','dob','salary','department',)
+    list_filter=['department',]
+    list_display=('id','name','email','dob','salary','department',)
+    search_fields=['email','name','salary','id',]
+    list_per_page=4
+
     resource_class=EmployeeResource
 
+class DepartmentAdmin(admin.ModelAdmin):
+    list_filter=['slug',]
+    list_display=('id','name','slug',)
+    search_fields=['name',]
+    list_per_page=3
+    
+    
 admin.site.register(Employee,EmployeeAdmin)
-admin.site.register(Department)
+admin.site.register(Department,DepartmentAdmin)
 
 

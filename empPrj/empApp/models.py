@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 class Department(models.Model):    
     id=models.AutoField(primary_key=True)
-    name=models.CharField('Depatment Name',max_length=100)
+    name=models.CharField('Department Name',max_length=100)
     slug=models.SlugField(max_length=150,unique=True,db_index=True,blank=True)
    
     def __str__(self) -> str:
