@@ -7,6 +7,8 @@ from django.conf import settings
 from django.http import HttpResponse
 import csv
 from empApp.models import Employee
+from django.views.generic import *
+
 
 # Create your views here.
 def SendEmailwithAttachment(request):
@@ -47,5 +49,9 @@ def export_employee_csv(request):
     for emp in employees:
         writer.writerow(emp)
     return response
+
+class AboutView(TemplateView):
+    template_name = "about.html" 
+        
     
 

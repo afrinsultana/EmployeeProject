@@ -73,5 +73,9 @@ def employee_list(request,department_slug=None):
         
     context={'department':department,'departments':departments,'object_list':employees}
     return render(request,'emp/list.html',context)
+
+
+class AboutView(TemplateView):
+    template_name = "about.html" 
         
 

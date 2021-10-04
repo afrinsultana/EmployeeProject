@@ -11,5 +11,5 @@ urlpatterns = [
     path('list/<str:department_slug>/',views.employee_list,name='emplist_by_department'),
     path('show/',views.employee_list,name='list'),
     path('delete/<int:pk>',views.EmployeeDeleteView.as_view(),name='delete'),
-
+    path('about/',views.AboutView.as_view(),name='about'),
 ]

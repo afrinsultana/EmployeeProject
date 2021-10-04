@@ -24,6 +24,8 @@ class DepartmentAdmin(admin.ModelAdmin):
     list_display=('id','name','slug',)
     search_fields=['name',]
     list_per_page=3
+
+    prepopulated_fields={'slug':('name', )}
     
     
 admin.site.register(Employee,EmployeeAdmin)
