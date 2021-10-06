@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div id="container" style="width: 75%;">
+    <canvas id="mychart"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+var config={
+    type: '{{ charttype }}',
+    data: {
+      labels: {{ labels|safe }},
+      datasets: [
+        {
+          label: "Group By Department",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: {{ data|safe }}
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Department Wise Employee List'
+      }
+    }
+}
+
+window.onload=function(){
+    var ctx=document.getElementById('mychart').getContext('2d');
+    window.mychart=new Chart(ctx,config)
+}
+
+
+</script>
+    
+{% endblock content %}
+    
+    
+
+    
+    

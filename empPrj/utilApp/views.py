@@ -1,4 +1,5 @@
 from django.contrib.messages.api import error
+from empApp.models import *
 from utilApp.forms import EmailForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -8,6 +9,9 @@ from django.http import HttpResponse
 import csv
 from empApp.models import Employee
 from django.views.generic import *
+
+from django.db.models import Count
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -53,5 +57,20 @@ def export_employee_csv(request):
 class AboutView(TemplateView):
     template_name = "about.html" 
         
-    
+def group_by_dept(request): 
+    querysets=Employee.objects.values('department__name').\
+    annotate(num_employee=Count('department_id')).all()
+    context={'querysets':querysets}
+    return render(request,'utils/group_by_dept.html',context)
 
+def show_chart(request,chartType):
+    labels=[]
+    data=[]
+    charttype=chartType
+    querysets=Employee.objects.values('department__name').annotate(num_employee=Count('department_id')).all()
+    for qs in querysets:
+        labels.append(qs['department__name'])
+        data.append(qs['num_employee'])
+    context={'labels':labels,'data':data,'charttype':charttype}
+    return render(request,'utils/mychart.html',context)
+    

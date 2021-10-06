@@ -58,7 +58,16 @@
                               <li><a class="dropdown-item" href="{% url 'util:sendmail' %}">Sending Mail...</a></li>
                               <li><a class="dropdown-item" href="{% url 'util:export_employee_csv' %}">Export Employee .CSV file</a></li>
                               <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#">Export Employee .xls file</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:group_by_dept' %}">Group By Department</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'bar' %}">Show Bar Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'pie' %}">Show Pie Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'doughnut' %}">Show Doughnut Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'radar' %}">Show Radar Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'polarArea' %}">Show Polar Area Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'bubble' %}">Show Bubble Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'horizontalBar' %}">Show Horizontal Bar Chart</a></li>
+                              <li><a class="dropdown-item" href="{% url 'util:mouChart' 'line' %}">Show Line Chart</a></li>
+                          
                             </ul>
                           </li>
                           <li class="nav-item">

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="row">
+    
+    <div class="col-sm-9">
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <hr>
+    
+            <table class="table table-striped" id="emptable" data-page-length="2">
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Number Of Employee</th>
+                                                
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for qs in querysets %}
+                        <tr>
+                            <td>{{ qs.department__name }}</td>
+                            <td>{{ qs.num_employee}}</td>
+                           
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="2" class="text-center bg-warning">No Record Found</td>
+                        </tr>    
+                    {% endfor %}                      
+    
+                </tbody>
+                <tfoot>
+    
+                </tfoot>
+            </table>
+            
+        </form>    
+    </div>
+</div>
+    
+{% endblock content %}
+    
+    
+
+    
+    
