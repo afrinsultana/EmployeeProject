@@ -27,6 +27,7 @@ urlpatterns = [
     path('emp/',include(('empApp.urls','app_name'),namespace='employee')),
     path('util/',include(('utilApp.urls','app_name'),namespace='util')),
     path('',include('django.contrib.auth.urls')),
+    path('accounts/',include('allauth.urls')),
 
 ]
 

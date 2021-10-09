@@ -1,7 +1,10 @@
+
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.urls import reverse
+
+from empApp.validators import validate_edu_email
 
 # Create your models here.
 class Department(models.Model):    
@@ -29,7 +32,7 @@ class Department(models.Model):
 class Employee(models.Model):    
     id=models.AutoField(primary_key=True)
     name=models.CharField('Employee Name ',max_length=100)
-    email=models.EmailField('E-mail Address ',unique=True,blank=True)
+    email=models.EmailField('E-mail Address ',unique=True,blank=True, validators=[validate_edu_email])
     dob=models.DateField('Birth Date Fld ',default=timezone.now,blank=True,help_text='Format: yyyy-mm-dd')    
     salary=models.DecimalField('Monthly Salary ',max_digits=8,decimal_places=2,blank=True,null=True)
     photo=models.FileField(upload_to='myimage',default='myimage/blank.png',blank=True)
